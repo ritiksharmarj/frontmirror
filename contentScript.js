@@ -1,13 +1,14 @@
-console.log('content script running');
-
+// Receive message from background service worker
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.openApp) {
-    // Open the app
-    // To run the functions sequentially
+    /**
+     * Open the app
+     * To run the functions sequentially
+     */
     (async () => {
       await loadModal();
       injectCameraIframe();
-      handleCloseFrontMirror();
+      handleCloseAppOverlay();
     })();
   } else if (message.reloadApp) {
     // Reload the app
@@ -19,11 +20,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     (async () => {
       await loadModal();
       injectCameraIframe();
-      handleCloseFrontMirror();
+      handleCloseAppOverlay();
     })();
   }
 });
 
+// Load frontmirror modal to the DOM
 async function loadModal() {
   try {
     // Fetch the modal HTML content
@@ -42,6 +44,7 @@ async function loadModal() {
   }
 }
 
+// Inject camera iframe to the app overlay
 function injectCameraIframe() {
   const iframe = document.createElement('iframe');
   iframe.src = chrome.runtime.getURL('/camera/camera.html');
@@ -56,7 +59,7 @@ function injectCameraIframe() {
  * Remove overlay element from the DOM
  * Add a click event listener to the document
  */
-function handleCloseFrontMirror() {
+function handleCloseAppOverlay() {
   document.addEventListener('click', function (event) {
     // Check if the click event occurred within the camera overlay or its descendants
     const cameraOverlay = document.getElementById('fm-app-overlay');
