@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Front Mirror</title>
+    <style>
+      #frontmirror-extension {
+        position: relative;
+        z-index: 2147483647;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-family: 'Inter';
+        line-height: normal;
+      }
+
+      #frontmirror-extension #fm-app-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(3px);
+      }
+
+      #frontmirror-extension #fm-camera {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        min-height: 500px;
+        background-color: #fff;
+        border-radius: 8px;
+        transition: opacity 0.2s;
+        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.3);
+        z-index: 10;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="frontmirror-extension">
+      <div id="fm-app-overlay"></div>
+    </div>
+  </body>
+</html>

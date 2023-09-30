@@ -1,0 +1,70 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#viewedit-camera {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.2s ease-in;
+}
+
+#camera-stream {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  background-color: #eceff1;
+}
+
+#camera-select {
+  min-width: 350px;
+  position: relative;
+}
+
+select {
+  appearance: none;
+  /*  safari  */
+  -webkit-appearance: none;
+  /*  other styles for aesthetics */
+  width: 100%;
+  font-size: inherit;
+  padding: 10px 80px 10px 16px;
+  background-color: #fff;
+  border: 1px solid #caced1;
+  border-radius: 8px;
+  color: #000;
+  cursor: pointer;
+  outline: none;
+}
+
+#camera-select::before,
+#camera-select::after {
+  --size: 0.3rem;
+  content: '';
+  position: absolute;
+  right: 1rem;
+  pointer-events: none;
+}
+
+#camera-select::before {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-bottom: var(--size) solid black;
+  top: 38%;
+}
+
+#camera-select::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black;
+  top: 57%;
+}

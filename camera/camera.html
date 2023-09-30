@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Front Mirror - Camera Stream</title>
+    <link rel="stylesheet" href="camera.css" />
+  </head>
+
+  <body>
+    <div>
+      <div id="viewedit-camera">
+        <video
+          id="camera-stream"
+          style="transform: rotateY(180deg)"
+          autoplay
+          muted
+        ></video>
+        <div id="camera-select">
+          <select id="camera-source"></select>
+        </div>
+      </div>
+
+      <div id="fm-footer"></div>
+    </div>
+
+    <script src="camera.js"></script>
+  </body>
+</html>
