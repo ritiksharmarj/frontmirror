@@ -1,16 +1,5 @@
 console.log('content script running');
 
-// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-//   if (message.openModal === 'EXECUTE_MODAL') {
-//     // To run the functions sequentially
-//     (async () => {
-//       await loadModal();
-//       injectCameraIframe();
-//       handleCloseFrontMirror();
-//     })();
-//   }
-// });
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.openApp) {
     // Open the app
