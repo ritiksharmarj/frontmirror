@@ -1,12 +1,36 @@
 console.log('content script running');
 
+// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+//   if (message.openModal === 'EXECUTE_MODAL') {
+//     // To run the functions sequentially
+//     (async () => {
+//       await loadModal();
+//       injectCameraIframe();
+//       handleCloseFrontMirror();
+//     })();
+//   }
+// });
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.openModal === 'EXECUTE_MODAL') {
+  if (message.openApp) {
+    // Open the app
     // To run the functions sequentially
     (async () => {
       await loadModal();
       injectCameraIframe();
-      addClickHandler();
+      handleCloseFrontMirror();
+    })();
+  } else if (message.reloadApp) {
+    // Reload the app
+    const frontmirrorApp = document.getElementById('frontmirror-app');
+    if (frontmirrorApp) {
+      frontmirrorApp.remove();
+    }
+
+    (async () => {
+      await loadModal();
+      injectCameraIframe();
+      handleCloseFrontMirror();
     })();
   }
 });
@@ -16,7 +40,6 @@ async function loadModal() {
     // Fetch the modal HTML content
     const modalResponse = await fetch(chrome.runtime.getURL('/modal.html'));
     const modalHTML = await modalResponse.text();
-    console.log(modalHTML);
 
     // Create a container element for the modal
     const modalContainer = document.createElement('div');
@@ -44,7 +67,7 @@ function injectCameraIframe() {
  * Remove overlay element from the DOM
  * Add a click event listener to the document
  */
-function addClickHandler() {
+function handleCloseFrontMirror() {
   document.addEventListener('click', function (event) {
     // Check if the click event occurred within the camera overlay or its descendants
     const cameraOverlay = document.getElementById('fm-app-overlay');
