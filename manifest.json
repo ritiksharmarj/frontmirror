@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Front Mirror",
+  "name": "Front Mirror - One click camera check",
   "version": "1.0.0",
   "description": "A one-click camera check, right from the extension bar.",
   "icons": {
@@ -13,7 +13,7 @@
   "web_accessible_resources": [
     {
       "matches": ["<all_urls>"],
-      "resources": ["modal.html", "/camera/camera.html"]
+      "resources": ["modal.html", "/camera/*"]
     }
   ],
   "content_scripts": [
@@ -26,6 +26,6 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_title": "Front Mirror"
+    "default_title": "Front Mirror - One click camera check"
   }
 }

@@ -1,7 +1,8 @@
-console.log('Camera running');
-
 const cameraOptions = document.getElementById('camera-source');
 const camera = document.getElementById('camera-stream');
+const viewEditCameraBox = document.getElementById('viewedit-camera');
+const videoStreamErrorBox = document.getElementById('video-stream--error-box');
+const vsErrorSettingsBtn = document.getElementById('vs-error--settings-btn');
 let stream;
 
 const constraints = {
@@ -58,9 +59,19 @@ async function handleStream() {
     stream = await navigator.mediaDevices.getUserMedia(updatedConstraints);
     camera.srcObject = stream;
   } catch (error) {
-    console.error(`Video Stream Error: ${error}`);
+    if (error.name === 'NotAllowedError' || error.name === 'AbortError') {
+      viewEditCameraBox.classList.add('hidden');
+      videoStreamErrorBox.classList.remove('hidden');
+    } else {
+      console.error(`Video Stream Error: ${error}`);
+    }
   }
 }
 
 // Switch between camera and start a new stream
 cameraOptions.addEventListener('change', handleStream);
+
+// Open chrome camera settings tab when click on camera settings button
+vsErrorSettingsBtn.addEventListener('click', function () {
+  chrome.tabs.create({ url: 'chrome://settings/content/camera' });
+});

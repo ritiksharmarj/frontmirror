@@ -1,14 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
+body {
+  --brand-default: #3ecf8e;
+  --brand-accent: rgba(62, 207, 142, 0.7);
+  --colors-scale1: #232323;
+  --colors-scale2: #282828;
+  --colors-scale3: #ededed;
+  --colors-scale4: #707070;
+  --colors-scale5: #ffffff;
+  --colors-scale6: #bbbbbb;
+  --colors-scale7: #3e3e3e;
+  --colors-scale8: #343434;
+  --colors-scaleA1: hsla(0, 0%, 100%, 0.026);
+
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 56px;
+  border-radius: 8px;
+  border: 4px solid transparent;
+  background-clip: content-box;
+  background-color: var(--colors-scale7);
+}
+
 #viewedit-camera {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 10px;
+  gap: 15px;
+  padding: 15px;
   z-index: 10;
   position: relative;
   width: 100%;
@@ -22,12 +53,31 @@
   height: 400px;
   object-fit: cover;
   border-radius: 8px;
-  background-color: #eceff1;
+  background-color: var(--colors-scale1);
+  border: 1px solid var(--colors-scale2);
 }
 
 #camera-select {
-  min-width: 350px;
+  min-width: 250px;
   position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#camera-select svg {
+  width: 20px;
+}
+
+#camera-select #camera-select--svg-start {
+  position: absolute;
+  left: 0;
+  margin-left: 16px;
+}
+
+#camera-select #camera-select--svg-end {
+  position: absolute;
+  right: 0;
+  margin-right: 16px;
 }
 
 select {
@@ -37,34 +87,88 @@ select {
   /*  other styles for aesthetics */
   width: 100%;
   font-size: inherit;
-  padding: 10px 80px 10px 16px;
-  background-color: #fff;
-  border: 1px solid #caced1;
+  font-family: inherit;
+  height: 40px;
+  line-height: 20px;
+  padding: 10px 16px 10px 50px;
+  background-color: var(--colors-scaleA1);
+  border: 1px solid var(--colors-scale7);
   border-radius: 8px;
-  color: #000;
+  color: var(--colors-scale3);
   cursor: pointer;
   outline: none;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-#camera-select::before,
-#camera-select::after {
-  --size: 0.3rem;
-  content: '';
-  position: absolute;
-  right: 1rem;
-  pointer-events: none;
+select:focus {
+  border-color: var(--colors-scale4);
 }
 
-#camera-select::before {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-bottom: var(--size) solid black;
-  top: 38%;
+#video-stream--error-box {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.2s ease-in;
 }
 
-#camera-select::after {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-top: var(--size) solid black;
-  top: 57%;
+#video-stream--error-box div {
+  background-color: var(--colors-scale1);
+  border: 1px solid var(--colors-scale2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+#video-stream--error-box #vs-error--title {
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--colors-scale3);
+}
+
+#video-stream--error-box #vs-error--img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+#vs-error--settings-btn {
+  background-color: var(--brand-accent);
+  border: 1px solid var(--brand-default);
+  border-radius: 8px;
+  color: var(--colors-scale5);
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 8px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#vs-error--settings-btn:hover {
+  background-color: var(--brand-default);
+}
+
+.hidden {
+  display: none !important;
 }
