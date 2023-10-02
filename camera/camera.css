@@ -17,6 +17,8 @@ body {
   --colors-scale6: #bbbbbb;
   --colors-scale7: #3e3e3e;
   --colors-scale8: #343434;
+  --colors-scale9: #2e2e2e;
+  --colors-scale10: #505050;
   --colors-scaleA1: hsla(0, 0%, 100%, 0.026);
 
   font-family: 'Inter', sans-serif;
@@ -35,6 +37,31 @@ body {
   background-color: var(--colors-scale7);
 }
 
+#viewedit-camera--section {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  overflow: hidden;
+}
+
+#viewedit-camera--section #fm-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 8px 15px;
+  background-color: var(--colors-scale1);
+  border-top: 1px solid var(--colors-scale2);
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--colors-scale3);
+}
+
 #viewedit-camera {
   display: flex;
   flex-direction: column;
@@ -43,7 +70,6 @@ body {
   z-index: 10;
   position: relative;
   width: 100%;
-  height: 100%;
   overflow: hidden;
   transition: transform 0.2s ease-in;
 }
@@ -58,23 +84,36 @@ body {
 }
 
 #camera-select {
-  min-width: 250px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#camera-select span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--colors-scale6);
+}
+
+#camera-select--container {
+  min-width: 200px;
   position: relative;
   display: flex;
   align-items: center;
 }
 
-#camera-select svg {
+#camera-select--container svg {
   width: 20px;
 }
 
-#camera-select #camera-select--svg-start {
+#camera-select--container #camera-select--svg-start {
   position: absolute;
   left: 0;
   margin-left: 16px;
 }
 
-#camera-select #camera-select--svg-end {
+#camera-select--container #camera-select--svg-end {
   position: absolute;
   right: 0;
   margin-right: 16px;
@@ -117,7 +156,23 @@ select:focus {
   transition: transform 0.2s ease-in;
 }
 
-#video-stream--error-box div {
+#video-stream--error-box #vs-error--action-title {
+  text-align: center;
+  color: var(--colors-scale3);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#video-stream--error-box #vs-error--action-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+#video-stream--error-box #vs-error--container {
   background-color: var(--colors-scale1);
   border: 1px solid var(--colors-scale2);
   display: flex;
@@ -129,8 +184,8 @@ select:focus {
 
 #video-stream--error-box #vs-error--title {
   font-family: inherit;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   color: var(--colors-scale3);
 }
 
@@ -140,13 +195,15 @@ select:focus {
   border-radius: 8px;
 }
 
-#vs-error--settings-btn {
-  background-color: var(--brand-accent);
-  border: 1px solid var(--brand-default);
+button {
+  background-color: var(--colors-scale9);
+  border: 1px solid var(--colors-scale7);
   border-radius: 8px;
   color: var(--colors-scale5);
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  gap: 8px;
+  align-items: center;
   font-family: inherit;
   font-size: 14px;
   font-weight: 500;
@@ -165,7 +222,22 @@ select:focus {
   touch-action: manipulation;
 }
 
-#vs-error--settings-btn:hover {
+button:hover {
+  background-color: var(--colors-scale8);
+  border-color: var(--colors-scale10);
+}
+
+button svg {
+  width: 20px;
+  height: 20px;
+}
+
+#vs-error--reload-btn {
+  background-color: var(--brand-accent);
+  border-color: var(--brand-default);
+}
+
+#vs-error--reload-btn:hover {
   background-color: var(--brand-default);
 }
 
