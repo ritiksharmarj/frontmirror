@@ -3,6 +3,7 @@ const camera = document.getElementById('camera-stream');
 const viewEditCameraBox = document.getElementById('viewedit-camera--section');
 const videoStreamErrorBox = document.getElementById('video-stream--error-box');
 const vsErrorSettingsBtn = document.getElementById('vs-error--settings-btn');
+const vsErrorReloadBtn = document.getElementById('vs-error--reload-btn');
 let stream;
 
 const constraints = {
@@ -74,4 +75,12 @@ cameraOptions.addEventListener('change', handleStream);
 // Open chrome camera settings tab when click on camera settings button
 vsErrorSettingsBtn.addEventListener('click', function () {
   chrome.tabs.create({ url: 'chrome://settings/content/camera' });
+});
+
+// Reload the active tab
+vsErrorReloadBtn.addEventListener('click', function () {
+  // Get the currently active tab
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.reload(tabs[0].id);
+  });
 });

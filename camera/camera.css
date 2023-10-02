@@ -17,6 +17,8 @@ body {
   --colors-scale6: #bbbbbb;
   --colors-scale7: #3e3e3e;
   --colors-scale8: #343434;
+  --colors-scale9: #2e2e2e;
+  --colors-scale10: #505050;
   --colors-scaleA1: hsla(0, 0%, 100%, 0.026);
 
   font-family: 'Inter', sans-serif;
@@ -154,7 +156,23 @@ select:focus {
   transition: transform 0.2s ease-in;
 }
 
-#video-stream--error-box div {
+#video-stream--error-box #vs-error--action-title {
+  text-align: center;
+  color: var(--colors-scale3);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+#video-stream--error-box #vs-error--action-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+#video-stream--error-box #vs-error--container {
   background-color: var(--colors-scale1);
   border: 1px solid var(--colors-scale2);
   display: flex;
@@ -166,8 +184,8 @@ select:focus {
 
 #video-stream--error-box #vs-error--title {
   font-family: inherit;
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   color: var(--colors-scale3);
 }
 
@@ -177,13 +195,15 @@ select:focus {
   border-radius: 8px;
 }
 
-#vs-error--settings-btn {
-  background-color: var(--brand-accent);
-  border: 1px solid var(--brand-default);
+button {
+  background-color: var(--colors-scale9);
+  border: 1px solid var(--colors-scale7);
   border-radius: 8px;
   color: var(--colors-scale5);
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  gap: 8px;
+  align-items: center;
   font-family: inherit;
   font-size: 14px;
   font-weight: 500;
@@ -202,7 +222,22 @@ select:focus {
   touch-action: manipulation;
 }
 
-#vs-error--settings-btn:hover {
+button:hover {
+  background-color: var(--colors-scale8);
+  border-color: var(--colors-scale10);
+}
+
+button svg {
+  width: 20px;
+  height: 20px;
+}
+
+#vs-error--reload-btn {
+  background-color: var(--brand-accent);
+  border-color: var(--brand-default);
+}
+
+#vs-error--reload-btn:hover {
   background-color: var(--brand-default);
 }
 
