@@ -1,6 +1,6 @@
 const cameraOptions = document.getElementById('camera-source');
 const camera = document.getElementById('camera-stream');
-const viewEditCameraBox = document.getElementById('viewedit-camera');
+const viewEditCameraBox = document.getElementById('viewedit-camera--section');
 const videoStreamErrorBox = document.getElementById('video-stream--error-box');
 const vsErrorSettingsBtn = document.getElementById('vs-error--settings-btn');
 let stream;

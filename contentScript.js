@@ -1,31 +1,7 @@
 // Receive message from background service worker
-// chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-//   if (message.openApp) {
-//     /**
-//      * Open the app
-//      * To run the functions sequentially
-//      */
-//     (async () => {
-//       await loadModal();
-//       injectCameraIframe();
-//     })();
-//   } else if (message.reloadApp) {
-//     // Reload the app
-//     const frontmirrorApp = document.getElementById('frontmirror-app');
-//     if (frontmirrorApp) {
-//       frontmirrorApp.remove();
-//     }
-
-//     (async () => {
-//       await loadModal();
-//       injectCameraIframe();
-//     })();
-//   }
-// });
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.openApp) {
-    // Delete the existing element if exist
+    // Delete if already exist
     const frontmirrorApp = document.getElementById('frontmirror-app');
     if (frontmirrorApp) {
       frontmirrorApp.remove();
@@ -81,6 +57,15 @@ document.addEventListener('click', function (e) {
     (e.target === cameraOverlay || cameraOverlay.contains(e.target))
   ) {
     // Remove the camera overlay
+    cameraOverlay.remove();
+  }
+});
+
+// Remove camera overlay element when press "Escape" key
+document.addEventListener('keydown', function (e) {
+  const cameraOverlay = document.getElementById('fm-app-overlay');
+
+  if (e.key === 'Escape' && cameraOverlay) {
     cameraOverlay.remove();
   }
 });

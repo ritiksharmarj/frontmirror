@@ -27,5 +27,14 @@
   },
   "action": {
     "default_title": "Front Mirror - One click camera check"
+  },
+  "commands": {
+    "inject-script": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Z",
+        "mac": "Command+Shift+Z"
+      },
+      "description": "Inject a script on the page"
+    }
   }
 }
