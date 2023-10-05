@@ -2,25 +2,13 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
+import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  openGraph: {
-    title: 'Front Mirror - One click camera check',
-    description: 'A one-click camera check, right from the chrome toolbar.',
-    url: 'https://frontmirror.ritiksharma.me/',
-    siteName: 'Front Mirror - One click camera check',
-    images: [
-      {
-        url: 'https://frontmirror.ritiksharma.me/og.png',
-        width: 1600,
-        height: 840,
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
+  title: 'Front Mirror - One click camera check',
+  description: 'A one-click camera check, right from the chrome toolbar.',
 };
 
 export default function RootLayout({
@@ -30,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <head>
+      <Head>
         <link
           rel='shortcut icon'
           href='/favicons/favicon.ico'
@@ -61,7 +49,7 @@ export default function RootLayout({
         />
         <meta name='msapplication-TileColor' content='#da532c' />
         <meta name='theme-color' content='#1c1c1c' />
-      </head>
+      </Head>
       <body className={inter.className}>
         {children}
         <Analytics />

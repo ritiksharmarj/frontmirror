@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Image from 'next/image';
 import heroBg from './assets/hero-bg.jpg';
 import logo from './assets/logo.svg';
@@ -6,6 +7,45 @@ import CameraCard from './components/CameraCard';
 export default function Home() {
   return (
     <>
+      <Head>
+        {/* Primary Tags */}
+        <title>Front Mirror - One click camera check</title>
+        <meta name='title' content='Front Mirror - One click camera check' />
+        <meta
+          name='description'
+          content='A one-click camera check, right from the chrome toolbar.'
+        />
+
+        {/* Twitter */}
+        <meta
+          property='twitter:title'
+          content='Front Mirror - One click camera check'
+        />
+        <meta
+          property='twitter:description'
+          content='A one-click camera check, right from the chrome toolbar.'
+        />
+        <meta property='twitter:image' content='/og.png' />
+        <meta
+          property='twitter:url'
+          content='https://frontmirror.ritiksharma.me/'
+        />
+        <meta property='twitter:card' content='summary_large_image' />
+
+        {/* Facebook */}
+        <meta
+          property='og:title'
+          content='Front Mirror - One click camera check'
+        />
+        <meta
+          property='og:description'
+          content='A one-click camera check, right from the chrome toolbar.'
+        />
+        <meta property='og:url' content='https://frontmirror.ritiksharma.me/' />
+        <meta property='og:image' content='/og.png' />
+        <meta property='og:type' content='website' />
+      </Head>
+
       <section
         className='h-[450px] px-5 flex flex-col justify-center'
         style={{
