@@ -14,8 +14,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: 'https://frontmirror.ritiksharma.me/og.png',
-        width: 800,
-        height: 600,
+        width: 1600,
+        height: 840,
       },
     ],
     locale: 'en_US',
