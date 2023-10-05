@@ -2,7 +2,6 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
-import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <Head>
+      <head>
         <link
           rel='shortcut icon'
           href='/favicons/favicon.ico'
@@ -49,7 +48,7 @@ export default function RootLayout({
         />
         <meta name='msapplication-TileColor' content='#da532c' />
         <meta name='theme-color' content='#1c1c1c' />
-      </Head>
+      </head>
       <body className={inter.className}>
         {children}
         <Analytics />
