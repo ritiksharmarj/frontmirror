@@ -22,6 +22,7 @@
 body {
   color: var(--color-default);
   background-color: var(--background-default);
+  -webkit-font-smoothing: antialiased;
 }
 
 @layer base {

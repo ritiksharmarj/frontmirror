@@ -5,7 +5,7 @@ const CameraCard = () => {
     <div className='flex flex-col bg-[var(--background-default)] border border-solid border-[var(--colors-scale8)] rounded-lg overflow-hidden'>
       <div className='p-4 flex flex-col gap-4'>
         <div
-          className='bg-[var(--colors-scale7)] border border-solid border-[var(--colors-scale8)] rounded-lg h-[350px]'
+          className='bg-[var(--colors-scale7)] border border-solid border-[var(--colors-scale8)] rounded-lg h-[250px] sm:h-[350px]'
           style={{
             backgroundImage: `url(${cameraPreview.src})`,
             backgroundPosition: 'center',
@@ -44,8 +44,8 @@ const CameraCard = () => {
         </div>
       </div>
 
-      <div className='bg-[var(--colors-scale7)] border-t border-solid border-[var(--colors-scale8)] mt-6'>
-        <span className='text-xs min-h-[50px] flex items-center justify-center text-center'>
+      <div className='bg-[var(--colors-scale7)] border-t border-solid border-[var(--colors-scale8)] mt-6 min-h-[50px] flex items-center justify-center py-2 px-4'>
+        <span className='text-xs text-center'>
           Press Ctrl+Shift+Z (Command+Shift+Z on a Mac) to open the Front
           Mirror, press Escape to close
         </span>
