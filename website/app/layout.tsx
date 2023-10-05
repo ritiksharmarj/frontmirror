@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Front Mirror - One click camera check',
-  description: 'A one-click camera check, right from the extension bar.',
+  description: 'A one-click camera check, right from the chrome toolbar.',
 };
 
 export default function RootLayout({
