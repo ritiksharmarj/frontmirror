@@ -25,7 +25,10 @@ export default function Home() {
           property='twitter:description'
           content='A one-click camera check, right from the chrome toolbar.'
         />
-        <meta property='twitter:image' content='/og.png' />
+        <meta
+          property='twitter:image'
+          content='https://frontmirror.ritiksharma.me/og.png'
+        />
         <meta
           property='twitter:url'
           content='https://frontmirror.ritiksharma.me/'
@@ -42,7 +45,10 @@ export default function Home() {
           content='A one-click camera check, right from the chrome toolbar.'
         />
         <meta property='og:url' content='https://frontmirror.ritiksharma.me/' />
-        <meta property='og:image' content='/og.png' />
+        <meta
+          property='og:image'
+          content='https://frontmirror.ritiksharma.me/og.png'
+        />
         <meta property='og:type' content='website' />
       </Head>
 
