@@ -28,17 +28,22 @@ export default function Home() {
             <h2 className='text-center'>
               A one-click camera check, right from the chrome toolbar.
             </h2>
-            <button className='mt-14'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='32'
-                height='32'
-                viewBox='0 0 256 256'
-              >
-                <path d='M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,16a88,88,0,0,1,73.72,40H128a48.08,48.08,0,0,0-45.6,33l-23.08-40A87.89,87.89,0,0,1,128,40Zm32,88a32,32,0,1,1-32-32A32,32,0,0,1,160,128ZM40,128a87.44,87.44,0,0,1,9.56-39.86L86.43,152c.06.1.13.19.19.28A48,48,0,0,0,137.82,175l-23.1,40A88.14,88.14,0,0,1,40,128Zm92.69,87.87L169.57,152c.08-.14.14-.28.22-.42a47.88,47.88,0,0,0-6-55.58H210a88,88,0,0,1-77.29,119.87Z'></path>
-              </svg>
-              Install On Chrome
-            </button>
+            <a
+              className='mt-14'
+              href='https://chrome.google.com/webstore/detail/mkngnmgpffcmjajiclogeomkdcgnkfcm'
+            >
+              <button>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='32'
+                  height='32'
+                  viewBox='0 0 256 256'
+                >
+                  <path d='M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,16a88,88,0,0,1,73.72,40H128a48.08,48.08,0,0,0-45.6,33l-23.08-40A87.89,87.89,0,0,1,128,40Zm32,88a32,32,0,1,1-32-32A32,32,0,0,1,160,128ZM40,128a87.44,87.44,0,0,1,9.56-39.86L86.43,152c.06.1.13.19.19.28A48,48,0,0,0,137.82,175l-23.1,40A88.14,88.14,0,0,1,40,128Zm92.69,87.87L169.57,152c.08-.14.14-.28.22-.42a47.88,47.88,0,0,0-6-55.58H210a88,88,0,0,1-77.29,119.87Z'></path>
+                </svg>
+                Install On Chrome
+              </button>
+            </a>
           </div>
         </div>
       </section>
@@ -77,28 +82,38 @@ export default function Home() {
               The fastest and easiest way to check camera.
             </h3>
             <div className='w-full sm:w-auto flex flex-col sm:flex-row items-center justify-center gap-4'>
-              <button className='w-full sm:w-auto'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='32'
-                  height='32'
-                  viewBox='0 0 256 256'
-                >
-                  <path d='M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z'></path>
-                </svg>
-                Give Feedback
-              </button>
-              <button className='w-full sm:w-auto bg-[var(--brand-accent)] border-[var(--brand-default)] hover:bg-[var(--brand-default)] hover:border-[var(--brand-default)]'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  width='32'
-                  height='32'
-                  viewBox='0 0 256 256'
-                >
-                  <path d='M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,16a88,88,0,0,1,73.72,40H128a48.08,48.08,0,0,0-45.6,33l-23.08-40A87.89,87.89,0,0,1,128,40Zm32,88a32,32,0,1,1-32-32A32,32,0,0,1,160,128ZM40,128a87.44,87.44,0,0,1,9.56-39.86L86.43,152c.06.1.13.19.19.28A48,48,0,0,0,137.82,175l-23.1,40A88.14,88.14,0,0,1,40,128Zm92.69,87.87L169.57,152c.08-.14.14-.28.22-.42a47.88,47.88,0,0,0-6-55.58H210a88,88,0,0,1-77.29,119.87Z'></path>
-                </svg>
-                Install On Chrome
-              </button>
+              <a
+                className='w-full sm:w-auto'
+                href='https://chrome.google.com/webstore/detail/mkngnmgpffcmjajiclogeomkdcgnkfcm'
+              >
+                <button className='w-full bg-[var(--brand-accent)] border-[var(--brand-default)] hover:bg-[var(--brand-default)] hover:border-[var(--brand-default)]'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='32'
+                    height='32'
+                    viewBox='0 0 256 256'
+                  >
+                    <path d='M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,16a88,88,0,0,1,73.72,40H128a48.08,48.08,0,0,0-45.6,33l-23.08-40A87.89,87.89,0,0,1,128,40Zm32,88a32,32,0,1,1-32-32A32,32,0,0,1,160,128ZM40,128a87.44,87.44,0,0,1,9.56-39.86L86.43,152c.06.1.13.19.19.28A48,48,0,0,0,137.82,175l-23.1,40A88.14,88.14,0,0,1,40,128Zm92.69,87.87L169.57,152c.08-.14.14-.28.22-.42a47.88,47.88,0,0,0-6-55.58H210a88,88,0,0,1-77.29,119.87Z'></path>
+                  </svg>
+                  Install On Chrome
+                </button>
+              </a>
+              <a
+                className='w-full sm:w-auto'
+                href='https://ritiksharma.me/feedback'
+              >
+                <button className='w-full'>
+                  <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    width='32'
+                    height='32'
+                    viewBox='0 0 256 256'
+                  >
+                    <path d='M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm16-40a8,8,0,0,1-8,8,16,16,0,0,1-16-16V128a8,8,0,0,1,0-16,16,16,0,0,1,16,16v40A8,8,0,0,1,144,176ZM112,84a12,12,0,1,1,12,12A12,12,0,0,1,112,84Z'></path>
+                  </svg>
+                  Give Feedback
+                </button>
+              </a>
             </div>
           </div>
         </div>
