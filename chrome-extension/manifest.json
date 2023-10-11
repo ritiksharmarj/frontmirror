@@ -31,8 +31,8 @@
   "commands": {
     "inject-script": {
       "suggested_key": {
-        "default": "Ctrl+Shift+Z",
-        "mac": "Command+Shift+Z"
+        "default": "Ctrl+Shift+O",
+        "mac": "Command+Shift+O"
       },
       "description": "Inject a script on the page"
     }
