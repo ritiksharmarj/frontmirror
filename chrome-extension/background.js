@@ -12,7 +12,9 @@ chrome.commands.onCommand.addListener((command, tab) => {
 // Open URL in new tab when extension is installed
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === 'install') {
-    chrome.tabs.create({ url: 'https://frontmirror.ritiksharma.me/' });
+    chrome.tabs.create({
+      url: 'https://www.producthunt.com/posts/front-mirror-one-click-camera-check',
+    });
   }
 });
 
