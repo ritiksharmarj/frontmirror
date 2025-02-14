@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
+import packageJson from './package.json';
 
 const NODE_ENV = (process.env.NODE_ENV ||
   'development') as webpack.Configuration['mode'];
@@ -66,8 +67,8 @@ const config: webpack.Configuration = {
             // generates the manifest file using the package.json informations
             return Buffer.from(
               JSON.stringify({
-                description: process.env.npm_package_description,
-                version: process.env.npm_package_version,
+                description: packageJson.description,
+                version: packageJson.version,
                 ...JSON.parse(content.toString()),
               })
             );
