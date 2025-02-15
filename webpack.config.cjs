@@ -4,8 +4,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const packageJson = require('./package.json');
-
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = NODE_ENV === 'development';
 
@@ -89,16 +87,16 @@ module.exports = {
         {
           from: 'manifest.json',
           to: '.',
-          transform: function (content) {
-            // TODO: generates the manifest file using the package.json informations
-            return Buffer.from(
-              JSON.stringify({
-                description: packageJson.description,
-                version: packageJson.version,
-                ...JSON.parse(content.toString()),
-              })
-            );
-          },
+          // transform: function (content) {
+          //   // TODO: generates the manifest file using the package.json informations
+          //   return Buffer.from(
+          //     JSON.stringify({
+          //       description: packageJson.description,
+          //       version: packageJson.version,
+          //       ...JSON.parse(content.toString()),
+          //     })
+          //   );
+          // },
         },
         { from: 'src/assets', to: 'assets' },
       ],
