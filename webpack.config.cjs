@@ -1,13 +1,23 @@
 const path = require('path');
+const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+
+const packageJson = require('./package.json');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = NODE_ENV === 'development';
 
 const { dir, ...options } = isDevelopment
   ? { dir: 'dev', devtool: 'cheap-module-source-map' }
-  : { dir: 'prod' };
+  : {
+      dir: 'prod',
+      optimization: {
+        minimize: true,
+        minimizer: [new TerserPlugin()],
+      },
+    };
 
 const fileExtensions = [
   'eot',
@@ -58,25 +68,33 @@ module.exports = {
       {
         test: new RegExp(`\\.(${fileExtensions.join('|')})$`),
         type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name][ext]',
+        },
       },
     ],
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      React: 'react',
+      Buffer: ['buffer', 'Buffer'],
+    }),
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
     new CopyWebpackPlugin({
       patterns: [
         {
           from: 'manifest.json',
           to: '.',
-          // transform: function (content) {
-          //   // generates the manifest file using the package.json informations
-          //   return Buffer.from(
-          //     JSON.stringify({
-          //       description: packageJson.description,
-          //       version: packageJson.version,
-          //       ...JSON.parse(content.toString()),
-          //     })
-          //   );
-          // },
+          transform: function (content) {
+            // generates the manifest file using the package.json informations
+            return Buffer.from(
+              JSON.stringify({
+                description: packageJson.description,
+                version: packageJson.version,
+                ...JSON.parse(content.toString()),
+              })
+            );
+          },
         },
         { from: 'src/assets', to: 'assets' },
       ],

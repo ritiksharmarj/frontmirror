@@ -1,9 +1,12 @@
+import logo from '../assets/icons/icon-128.png';
+
 function PopupApp() {
   return (
     <div className='App'>
       <header className='App-header'>
+        <img src={logo} className='App-logo' alt='logo' />
         <p>
-          Edit <code>src/popup/popup.tsx</code> and save to reload.
+          Edit <code>src/pages/Popup/Popup.jsx</code> and save to reload.
         </p>
         <a
           className='App-link'
