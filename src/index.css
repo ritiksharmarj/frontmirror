@@ -123,17 +123,15 @@
 #fm-app__camera-select-section #fm-app__camera-select-svg-first {
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
   margin-left: 16px;
+  color: var(--frontmirror-color-scale6);
 }
 
 #fm-app__camera-select-section #fm-app__camera-select-svg-last {
   position: absolute;
   right: 0;
-  top: 0;
-  bottom: 0;
   margin-right: 16px;
+  color: var(--frontmirror-color-scale8);
 }
 
 #fm-app__camera-select-section #fm-app__camera-source {
