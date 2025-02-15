@@ -15,7 +15,11 @@ const { dir, ...options } = isDevelopment
       dir: 'prod',
       optimization: {
         minimize: true,
-        minimizer: [new TerserPlugin()],
+        minimizer: [
+          new TerserPlugin({
+            extractComments: false,
+          }),
+        ],
       },
     };
 
@@ -86,7 +90,7 @@ module.exports = {
           from: 'manifest.json',
           to: '.',
           transform: function (content) {
-            // generates the manifest file using the package.json informations
+            // TODO: generates the manifest file using the package.json informations
             return Buffer.from(
               JSON.stringify({
                 description: packageJson.description,
