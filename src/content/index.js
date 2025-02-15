@@ -1,17 +1,19 @@
 import ReactDOM from 'react-dom/client';
 import CameraOverlay from '../components/camera-overlay.jsx';
 
-let cameraRoot = null;
+import '../index.css';
+
+let frontmirrorApp = null;
 
 chrome.runtime.onMessage.addListener((message) => {
   if (message.action === 'TOGGLE_CAMERA') {
-    if (!document.getElementById('camera-root')) {
-      cameraRoot = document.createElement('div');
-      cameraRoot.id = 'camera-root';
-      document.body.appendChild(cameraRoot);
-      ReactDOM.createRoot(cameraRoot).render(<CameraOverlay />);
+    if (!document.getElementById('frontmirror-app')) {
+      frontmirrorApp = document.createElement('div');
+      frontmirrorApp.id = 'frontmirror-app';
+      document.body.appendChild(frontmirrorApp);
+      ReactDOM.createRoot(frontmirrorApp).render(<CameraOverlay />);
     } else {
-      cameraRoot.remove();
+      frontmirrorApp.remove();
     }
   }
 });

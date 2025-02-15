@@ -16,25 +16,12 @@ export default function CameraOverlay() {
   };
 
   const unmountCamera = () => {
-    const root = document.getElementById('camera-root');
+    const root = document.getElementById('frontmirror-app');
     if (root) root.remove();
   };
 
   return (
-    <div
-      id='fm-app-overlay'
-      onClick={handleOverlayClick}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'rgba(0, 0, 0, 0.6)',
-        backdropFilter: 'blur(3px)',
-        zIndex: 2147483647,
-      }}
-    >
+    <div id='frontmirror-app__overlay' onClick={handleOverlayClick}>
       <CameraInterface />
     </div>
   );

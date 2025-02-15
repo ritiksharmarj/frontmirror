@@ -1,5 +1,8 @@
 import * as React from 'react';
-import '../styles/camera.css';
+import { VideoIcon } from 'lucide-react';
+import { ChevronsUpDownIcon } from 'lucide-react';
+import { SettingsIcon } from 'lucide-react';
+import { RotateCwIcon } from 'lucide-react';
 
 export default function CameraInterface() {
   const videoRef = React.useRef(null);
@@ -45,77 +48,101 @@ export default function CameraInterface() {
   }, []);
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '50%',
-        maxWidth: '700px',
-        minHeight: '600px',
-        backgroundColor: '#1c1c1c',
-        borderRadius: '8px',
-        boxShadow: '0 24px 40px rgba(0,0,0,0.3)',
-      }}
-    >
-      <video
-        ref={videoRef}
-        style={{
-          width: '100%',
-          height: '400px',
-          objectFit: 'cover',
-          transform: 'rotateY(180deg)',
-        }}
-        autoPlay
-        muted
-      />
+    <div id='frontmirror-app__camera'>
+      {!error ? (
+        <div id='fm-app__camera-section'>
+          <div id='fm-app__camera'>
+            <video id='fm-app__camera-stream' ref={videoRef} autoPlay muted />
 
-      <div style={{ padding: '15px' }}>
-        <select
-          value={selectedDevice}
-          onChange={(e) => setSelectedDevice(e.target.value)}
-          style={{
-            width: '100%',
-            padding: '8px',
-            backgroundColor: '#232323',
-            color: '#ffffff',
-            border: '1px solid #343434',
-            borderRadius: '4px',
-          }}
-        >
-          {devices.map((device) => (
-            <option key={device.deviceId} value={device.deviceId}>
-              {device.label || 'Unknown Camera'}
-            </option>
-          ))}
-        </select>
-      </div>
+            <div id='fm-app__camera-select-section'>
+              <div id='fm-app__camera-select'>
+                <VideoIcon size={20} id='fm-app__camera-select-svg-first' />
+                <select
+                  id='fm-app__camera-source'
+                  value={selectedDevice}
+                  onChange={(e) => setSelectedDevice(e.target.value)}
+                >
+                  {devices.map((device) => (
+                    <option key={device.deviceId} value={device.deviceId}>
+                      {device.label || 'Unknown Camera'}
+                    </option>
+                  ))}
+                </select>
+                <ChevronsUpDownIcon
+                  size={20}
+                  id='fm-app__camera-select-svg-last'
+                />
+              </div>
+              <span>Choose a different camera</span>
+            </div>
+          </div>
 
-      {error && (
-        <div
-          style={{
-            padding: '15px',
-            color: '#ffffff',
-            textAlign: 'center',
-          }}
-        >
-          <button
-            onClick={() =>
-              chrome.tabs.create({ url: 'chrome://settings/content/camera' })
-            }
-            style={{
-              padding: '8px 16px',
-              backgroundColor: '#3ecf8e',
-              border: 'none',
-              borderRadius: '4px',
-              color: 'white',
-              cursor: 'pointer',
-              margin: '5px',
-            }}
-          >
-            Camera Settings
-          </button>
+          <div id='fm-app__camera-info'>
+            <span>
+              Press Ctrl+Shift+O (Command+Shift+O on a Mac) to open the Front
+              Mirror, press Escape to close
+            </span>
+          </div>
+        </div>
+      ) : (
+        <div id='fm-app__error-section'>
+          <span id='fm-app__error-section-title'>
+            Enable camera permissions
+          </span>
+
+          <div id='fm-app__error-actions'>
+            <button
+              id='fm-app__error-action-settings-btn'
+              onClick={() =>
+                chrome.tabs.create({ url: 'chrome://settings/content/camera' })
+              }
+            >
+              <SettingsIcon size={20} />
+              Camera Settings
+            </button>
+            <button
+              id='fm-app__error-action-reload-btn'
+              onClick={() =>
+                // Get the current active tab
+                chrome.tabs.query(
+                  { active: true, currentWindow: true },
+                  (tabs) => {
+                    chrome.tabs.reload(tabs[0].id);
+                  }
+                )
+              }
+            >
+              <RotateCwIcon size={20} />
+              Reload Tab
+            </button>
+          </div>
+
+          <div id='fm-app__error-section-info'>
+            <span id='fm-app__error-section-info-title'>
+              How to allow sites to use camera
+            </span>
+            <img
+              src='assets/camera/allow-sites-to-use-camera-default.jpg'
+              alt='Allow sites to use camera default behaviour'
+              id='fm-app__error-section-info-img'
+            />
+            <img
+              src='assets/camera/allow-sites-to-use-camera.jpg'
+              alt='Allow sites to use camera customised behaviours'
+              id='fm-app__error-section-info-img'
+            />
+          </div>
+
+          <div id='fm-app__error-section-info'>
+            <span id='fm-app__error-section-info-title'>
+              How to unblock the camera
+            </span>
+            <img
+              src='assets/camera/unblock-the-camera.jpg'
+              alt='Unblock the camera'
+              id='fm-app__error-section-info-img'
+            />
+          </div>
         </div>
       )}
     </div>
