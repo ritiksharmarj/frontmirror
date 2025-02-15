@@ -42,6 +42,10 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
+        test: /\.html$/,
+        loader: 'html-loader',
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
@@ -54,7 +58,6 @@ module.exports = {
       {
         test: new RegExp(`\\.(${fileExtensions.join('|')})$`),
         type: 'asset/resource',
-        exclude: /node_modules/,
       },
     ],
   },
@@ -85,7 +88,9 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: fileExtensions
+      .map((extension) => `.${extension}`)
+      .concat(['.js', '.jsx', '.css']),
   },
   ...options,
 };
