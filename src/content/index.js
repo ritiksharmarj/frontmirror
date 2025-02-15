@@ -1,7 +1,17 @@
-console.log('Content script works!');
-console.log('Must reload extension for modifications to take effect.');
+import ReactDOM from 'react-dom/client';
+import CameraOverlay from '../components/camera-overlay.jsx';
 
-// change body background color
-window.addEventListener('load', () => {
-  document.body.style.background = 'pink';
+let cameraRoot = null;
+
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === 'TOGGLE_CAMERA') {
+    if (!document.getElementById('camera-root')) {
+      cameraRoot = document.createElement('div');
+      cameraRoot.id = 'camera-root';
+      document.body.appendChild(cameraRoot);
+      ReactDOM.createRoot(cameraRoot).render(<CameraOverlay />);
+    } else {
+      cameraRoot.remove();
+    }
+  }
 });

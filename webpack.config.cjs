@@ -41,7 +41,6 @@ module.exports = {
   entry: {
     background: './src/background/index.js',
     content: './src/content/index.js',
-    popup: './src/popup/index.jsx',
   },
   output: {
     filename: '[name].bundle.js',
@@ -103,11 +102,11 @@ module.exports = {
         { from: 'src/assets', to: 'assets' },
       ],
     }),
-    new HtmlWebpackPlugin({
-      template: './src/popup/index.html',
-      filename: 'popup.html',
-      chunks: ['popup'],
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: './src/popup/index.html',
+    //   filename: 'popup.html',
+    //   chunks: ['popup'],
+    // }),
   ],
   resolve: {
     extensions: fileExtensions
