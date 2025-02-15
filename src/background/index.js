@@ -1,2 +1,10 @@
-console.log('This is the background page.');
-console.log('Put the background scripts here.');
+// When click on extension icon
+chrome.action.onClicked.addListener((tab) => {
+  // Open the app by sending a message to the content script
+  chrome.tabs.sendMessage(tab.id, { action: 'TOGGLE_CAMERA' });
+});
+
+// Use keyboard shortcut to open extension
+chrome.commands.onCommand.addListener((command, tab) => {
+  chrome.tabs.sendMessage(tab.id, { action: 'TOGGLE_CAMERA' });
+});

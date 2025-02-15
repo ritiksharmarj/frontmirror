@@ -7,6 +7,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = NODE_ENV === 'development';
 
+// const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+
 const { dir, ...options } = isDevelopment
   ? { dir: 'dev', devtool: 'cheap-module-source-map' }
   : {
