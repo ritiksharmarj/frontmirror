@@ -45,9 +45,7 @@ const { dir, ...options } = isDevelopment
               ],
             },
           }),
-          new HtmlMinimizerPlugin({
-            minify: HtmlMinimizerPlugin.swcMinify,
-          }),
+          new HtmlMinimizerPlugin(),
         ],
       },
     };
