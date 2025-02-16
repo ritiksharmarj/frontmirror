@@ -1,13 +1,18 @@
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
+const ZipPlugin = require('zip-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = NODE_ENV === 'development';
 
-// const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 
 const { dir, ...options } = isDevelopment
   ? { dir: 'dev', devtool: 'cheap-module-source-map' }
@@ -18,6 +23,30 @@ const { dir, ...options } = isDevelopment
         minimizer: [
           new TerserPlugin({
             extractComments: false,
+          }),
+          new ImageMinimizerPlugin({
+            minimizer: {
+              implementation: ImageMinimizerPlugin.sharpMinify,
+              // Lossy - with loss of quality
+            },
+          }),
+          new ZipPlugin({
+            filename: `${packageJson.name}-${packageJson.version}.zip`,
+            path: '../zip',
+          }),
+          new CssMinimizerPlugin({
+            minify: CssMinimizerPlugin.lightningCssMinify,
+            minimizerOptions: {
+              preset: [
+                'default',
+                {
+                  discardComments: { removeAll: true },
+                },
+              ],
+            },
+          }),
+          new HtmlMinimizerPlugin({
+            minify: HtmlMinimizerPlugin.swcMinify,
           }),
         ],
       },
@@ -89,16 +118,16 @@ module.exports = {
         {
           from: 'manifest.json',
           to: '.',
-          // transform: function (content) {
-          //   // TODO: generates the manifest file using the package.json informations
-          //   return Buffer.from(
-          //     JSON.stringify({
-          //       description: packageJson.description,
-          //       version: packageJson.version,
-          //       ...JSON.parse(content.toString()),
-          //     })
-          //   );
-          // },
+          transform: function (content) {
+            // TODO: generates the manifest file using the package.json informations
+            return Buffer.from(
+              JSON.stringify({
+                description: packageJson.description,
+                version: packageJson.version,
+                ...JSON.parse(content.toString()),
+              })
+            );
+          },
         },
         { from: 'src/assets', to: 'assets' },
       ],
