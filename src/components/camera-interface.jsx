@@ -32,6 +32,13 @@ export default function CameraInterface() {
     };
 
     initCamera();
+
+    return () => {
+      // Cleanup video stream when unmounting
+      if (videoRef.current?.srcObject) {
+        videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+      }
+    };
   }, [selectedDevice]);
 
   React.useEffect(() => {
@@ -92,25 +99,23 @@ export default function CameraInterface() {
 
           <div id='fm-app__error-actions'>
             <button
-              id='fm-app__error-action-settings-btn'
-              onClick={() =>
-                chrome.tabs.create({ url: 'chrome://settings/content/camera' })
-              }
+              className='fm-app__error-action-settings-btn'
+              onClick={() => {
+                chrome.runtime.sendMessage({
+                  action: 'OPEN_SETTINGS',
+                });
+              }}
             >
               <SettingsIcon size={20} />
               Camera Settings
             </button>
             <button
-              id='fm-app__error-action-reload-btn'
-              onClick={() =>
-                // Get the current active tab
-                chrome.tabs.query(
-                  { active: true, currentWindow: true },
-                  (tabs) => {
-                    chrome.tabs.reload(tabs[0].id);
-                  }
-                )
-              }
+              className='fm-app__error-action-reload-btn'
+              onClick={() => {
+                chrome.runtime.sendMessage({
+                  action: 'RELOAD_TAB',
+                });
+              }}
             >
               <RotateCwIcon size={20} />
               Reload Tab
@@ -122,12 +127,16 @@ export default function CameraInterface() {
               How to allow sites to use camera
             </span>
             <img
-              src='assets/camera/allow-sites-to-use-camera-default.jpg'
+              src={chrome.runtime.getURL(
+                '/assets/camera/allow-sites-to-use-camera-default.jpg'
+              )}
               alt='Allow sites to use camera default behaviour'
               id='fm-app__error-section-info-img'
             />
             <img
-              src='assets/camera/allow-sites-to-use-camera.jpg'
+              src={chrome.runtime.getURL(
+                '/assets/camera/allow-sites-to-use-camera.jpg'
+              )}
               alt='Allow sites to use camera customised behaviours'
               id='fm-app__error-section-info-img'
             />
@@ -138,7 +147,9 @@ export default function CameraInterface() {
               How to unblock the camera
             </span>
             <img
-              src='assets/camera/unblock-the-camera.jpg'
+              src={chrome.runtime.getURL(
+                '/assets/camera/unblock-the-camera.jpg'
+              )}
               alt='Unblock the camera'
               id='fm-app__error-section-info-img'
             />

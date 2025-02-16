@@ -210,8 +210,7 @@
   border-radius: 8px;
 }
 
-#fm-app__error-actions #fm-app__error-action-settings-btn,
-#fm-app__error-actions #fm-app__error-action-reload-btn {
+#fm-app__error-actions button {
   background-color: var(--frontmirror-color-scale9);
   border: 1px solid var(--frontmirror-color-scale7);
   border-radius: 8px;
@@ -238,17 +237,16 @@
   touch-action: manipulation;
 }
 
-#fm-app__error-action-settings-btn:hover,
-#fm-app__error-action-reload-btn:hover {
-  background-color: var(--frontmirror-color-scale8);
-  border-color: var(--frontmirror-color-scale10);
+.fm-app__error-action-settings-btn:hover {
+  background-color: var(--frontmirror-color-scale8) !important;
+  border-color: var(--frontmirror-color-scale10) !important;
 }
 
-#fm-app__error-action-reload-btn {
-  background-color: var(--frontmirror-brand-accent);
-  border-color: var(--frontmirror-color-default);
+.fm-app__error-action-reload-btn {
+  background-color: var(--frontmirror-brand-accent) !important;
+  border-color: var(--frontmirror-color-default) !important;
 }
 
-#fm-app__error-action-reload-btn:hover {
-  background-color: var(--frontmirror-color-default);
+.fm-app__error-action-reload-btn:hover {
+  background-color: var(--frontmirror-color-default) !important;
 }

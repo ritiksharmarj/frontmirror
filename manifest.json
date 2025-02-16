@@ -10,6 +10,13 @@
     "128": "assets/icons/icon-128.png"
   },
   "author": "Ritik Sharma",
+  "permissions": ["activeTab", "scripting"],
+  "web_accessible_resources": [
+    {
+      "matches": ["<all_urls>"],
+      "resources": ["*", "assets/*", "content.bundle.js"]
+    }
+  ],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

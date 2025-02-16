@@ -101,11 +101,6 @@ module.exports = {
         { from: 'src/assets', to: 'assets' },
       ],
     }),
-    // new HtmlWebpackPlugin({
-    //   template: './src/popup/index.html',
-    //   filename: 'popup.html',
-    //   chunks: ['popup'],
-    // }),
   ],
   resolve: {
     extensions: fileExtensions
