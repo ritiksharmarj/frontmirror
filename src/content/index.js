@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import CameraOverlay from '../components/camera-overlay.jsx';
+import CameraOverlay from '../camera/camera-overlay.jsx';
 
 import '../index.css';
 

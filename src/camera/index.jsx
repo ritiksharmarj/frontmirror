@@ -1,10 +1,13 @@
 import * as React from 'react';
+import ReactDOM from 'react-dom/client';
 import { VideoIcon } from 'lucide-react';
 import { ChevronsUpDownIcon } from 'lucide-react';
 import { SettingsIcon } from 'lucide-react';
 import { RotateCwIcon } from 'lucide-react';
 
-export default function CameraInterface() {
+import './index.css';
+
+function Camera() {
   const videoRef = React.useRef(null);
   const [devices, setDevices] = React.useState([]);
   const [selectedDevice, setSelectedDevice] = React.useState('');
@@ -55,7 +58,7 @@ export default function CameraInterface() {
   }, []);
 
   return (
-    <div id='frontmirror-app__camera'>
+    <>
       {!error ? (
         <div id='fm-app__camera-section'>
           <div id='fm-app__camera'>
@@ -99,7 +102,7 @@ export default function CameraInterface() {
 
           <div id='fm-app__error-actions'>
             <button
-              className='fm-app__error-action-settings-btn'
+              id='fm-app__error-action-settings-btn'
               onClick={() => {
                 chrome.runtime.sendMessage({
                   action: 'OPEN_SETTINGS',
@@ -110,7 +113,7 @@ export default function CameraInterface() {
               Camera Settings
             </button>
             <button
-              className='fm-app__error-action-reload-btn'
+              id='fm-app__error-action-reload-btn'
               onClick={() => {
                 chrome.runtime.sendMessage({
                   action: 'RELOAD_TAB',
@@ -156,6 +159,8 @@ export default function CameraInterface() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
+
+ReactDOM.createRoot(document.getElementById('camera-root')).render(<Camera />);

@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDevelopment = NODE_ENV === 'development';
@@ -40,6 +41,7 @@ module.exports = {
   entry: {
     background: './src/background/index.js',
     content: './src/content/index.js',
+    camera: './src/camera/index.jsx',
   },
   output: {
     filename: '[name].bundle.js',
@@ -100,6 +102,11 @@ module.exports = {
         },
         { from: 'src/assets', to: 'assets' },
       ],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/camera/index.html',
+      filename: 'camera.html',
+      chunks: ['camera'],
     }),
   ],
   resolve: {

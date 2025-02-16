@@ -14,7 +14,7 @@
   "web_accessible_resources": [
     {
       "matches": ["<all_urls>"],
-      "resources": ["*", "assets/*", "content.bundle.js"]
+      "resources": ["*", "assets/*", "content.bundle.js", "camera.html"]
     }
   ],
   "content_scripts": [

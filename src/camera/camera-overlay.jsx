@@ -1,5 +1,4 @@
 import * as React from 'react';
-import CameraInterface from './camera-interface.jsx';
 
 export default function CameraOverlay() {
   React.useEffect(() => {
@@ -22,7 +21,11 @@ export default function CameraOverlay() {
 
   return (
     <div id='frontmirror-app__overlay' onClick={handleOverlayClick}>
-      <CameraInterface />
+      <iframe
+        id='frontmirror-app__camera'
+        src={chrome.runtime.getURL('camera.html')}
+        allow='camera'
+      />
     </div>
   );
 }
