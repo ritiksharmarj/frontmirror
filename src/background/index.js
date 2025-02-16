@@ -36,7 +36,7 @@ chrome.commands.onCommand.addListener((command, tab) => {
   }
 });
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message) => {
   if (message.action === "OPEN_SETTINGS") {
     chrome.tabs.create({ url: "chrome://settings/content/camera" });
   }

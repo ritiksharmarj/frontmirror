@@ -1,9 +1,11 @@
 import * as React from "react";
 import ReactDOM from "react-dom/client";
-import { VideoIcon } from "lucide-react";
-import { ChevronsUpDownIcon } from "lucide-react";
-import { SettingsIcon } from "lucide-react";
-import { RotateCwIcon } from "lucide-react";
+import {
+  VideoIcon,
+  ChevronsUpDownIcon,
+  SettingsIcon,
+  RotateCwIcon,
+} from "lucide-react";
 
 import "./index.css";
 

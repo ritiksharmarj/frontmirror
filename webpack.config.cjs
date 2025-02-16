@@ -1,23 +1,27 @@
-const fs = require('fs');
-const path = require('path');
-const webpack = require('webpack');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const HtmlMinimizerPlugin = require('html-minimizer-webpack-plugin');
-const ZipPlugin = require('zip-webpack-plugin');
+const fs = require("fs");
+const path = require("path");
+const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
+const ZipPlugin = require("zip-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
-const NODE_ENV = process.env.NODE_ENV || 'development';
-const isDevelopment = NODE_ENV === 'development';
+const NODE_ENV = process.env.NODE_ENV || "development";
+const isDevelopment = NODE_ENV === "development";
 
-const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+const packageJson = JSON.parse(fs.readFileSync("package.json", "utf-8"));
 
 const { dir, ...options } = isDevelopment
-  ? { dir: 'dev', devtool: 'cheap-module-source-map' }
+  ? {
+      dir: "dev",
+      devtool: "cheap-module-source-map",
+    }
   : {
-      dir: 'prod',
+      dir: "prod",
       optimization: {
         minimize: true,
         minimizer: [
@@ -32,13 +36,13 @@ const { dir, ...options } = isDevelopment
           }),
           new ZipPlugin({
             filename: `${packageJson.name}-${packageJson.version}.zip`,
-            path: '../zip',
+            path: "../zip",
           }),
           new CssMinimizerPlugin({
             minify: CssMinimizerPlugin.lightningCssMinify,
             minimizerOptions: {
               preset: [
-                'default',
+                "default",
                 {
                   discardComments: { removeAll: true },
                 },
@@ -51,71 +55,71 @@ const { dir, ...options } = isDevelopment
     };
 
 const fileExtensions = [
-  'eot',
-  'gif',
-  'jpeg',
-  'jpg',
-  'otf',
-  'png',
-  'svg',
-  'ttf',
-  'woff',
-  'woff2',
+  "eot",
+  "gif",
+  "jpeg",
+  "jpg",
+  "otf",
+  "png",
+  "svg",
+  "ttf",
+  "woff",
+  "woff2",
 ];
 
 module.exports = {
   mode: NODE_ENV,
   entry: {
-    background: './src/background/index.js',
-    content: './src/content/index.js',
-    camera: './src/camera/index.jsx',
+    background: "./src/background/index.js",
+    content: "./src/content/index.js",
+    camera: "./src/camera/index.jsx",
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, `dist/${dir}`),
     clean: true,
-    publicPath: '',
+    publicPath: "",
   },
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.html$/,
-        loader: 'html-loader',
+        loader: "html-loader",
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: ["@babel/preset-env", "@babel/preset-react"],
           },
         },
       },
       {
-        test: new RegExp(`\\.(${fileExtensions.join('|')})$`),
-        type: 'asset/resource',
+        test: new RegExp(`\\.(${fileExtensions.join("|")})$`),
+        type: "asset/resource",
         generator: {
-          filename: 'assets/[name][ext]',
+          filename: "assets/[name][ext]",
         },
       },
     ],
   },
   plugins: [
     new webpack.ProvidePlugin({
-      React: 'react',
-      Buffer: ['buffer', 'Buffer'],
+      React: "react",
+      Buffer: ["buffer", "Buffer"],
     }),
-    new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new webpack.EnvironmentPlugin(["NODE_ENV"]),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'manifest.json',
-          to: '.',
+          from: "manifest.json",
+          to: ".",
           transform: function (content) {
             // TODO: generates the manifest file using the package.json informations
             return Buffer.from(
@@ -123,23 +127,23 @@ module.exports = {
                 description: packageJson.description,
                 version: packageJson.version,
                 ...JSON.parse(content.toString()),
-              })
+              }),
             );
           },
         },
-        { from: 'src/assets', to: 'assets' },
+        { from: "src/assets", to: "assets" },
       ],
     }),
     new HtmlWebpackPlugin({
-      template: './src/camera/index.html',
-      filename: 'camera.html',
-      chunks: ['camera'],
+      template: "./src/camera/index.html",
+      filename: "camera.html",
+      chunks: ["camera"],
     }),
   ],
   resolve: {
     extensions: fileExtensions
       .map((extension) => `.${extension}`)
-      .concat(['.js', '.jsx', '.css']),
+      .concat([".js", ".jsx", ".css"]),
   },
   ...options,
 };
