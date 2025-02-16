@@ -15,6 +15,24 @@ function Camera() {
   const [selectedDevice, setSelectedDevice] = React.useState("");
   const [error, setError] = React.useState("");
 
+  const getDevices = async () => {
+    try {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const videoDevices = devices.filter((d) => d.kind === "videoinput");
+      setDevices(videoDevices);
+
+      if (videoDevices.length > 0 && !selectedDevice) {
+        setSelectedDevice(videoDevices[0].deviceId);
+      }
+    } catch (err) {
+      console.error("Device enumeration error:", err);
+    }
+  };
+
+  React.useEffect(() => {
+    getDevices();
+  }, []);
+
   React.useEffect(() => {
     const initCamera = async () => {
       try {
@@ -29,6 +47,7 @@ function Camera() {
 
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
+          await getDevices();
         }
       } catch (err) {
         setError("Camera access denied");
@@ -45,19 +64,6 @@ function Camera() {
       }
     };
   }, [selectedDevice]);
-
-  React.useEffect(() => {
-    const getDevices = async () => {
-      const devices = await navigator.mediaDevices.enumerateDevices();
-      const videoDevices = devices.filter((d) => d.kind === "videoinput");
-      setDevices(videoDevices);
-      if (videoDevices.length > 0) {
-        setSelectedDevice(videoDevices[0].deviceId);
-      }
-    };
-
-    getDevices();
-  }, []);
 
   return (
     <>
