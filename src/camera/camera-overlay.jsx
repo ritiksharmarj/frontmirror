@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 
 export default function CameraOverlay() {
   React.useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') unmountCamera();
+      if (e.key === "Escape") unmountCamera();
     };
 
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const handleOverlayClick = (e) => {
@@ -15,16 +15,16 @@ export default function CameraOverlay() {
   };
 
   const unmountCamera = () => {
-    const root = document.getElementById('frontmirror-app');
+    const root = document.getElementById("frontmirror-app");
     if (root) root.remove();
   };
 
   return (
-    <div id='frontmirror-app__overlay' onClick={handleOverlayClick}>
+    <div id="frontmirror-app__overlay" onClick={handleOverlayClick}>
       <iframe
-        id='frontmirror-app__camera'
-        src={chrome.runtime.getURL('camera.html')}
-        allow='camera'
+        id="frontmirror-app__camera"
+        src={chrome.runtime.getURL("camera.html")}
+        allow="camera"
       />
     </div>
   );
