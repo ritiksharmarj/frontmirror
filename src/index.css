@@ -1,0 +1,36 @@
+#frontmirror-app {
+  position: relative;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: system-ui, sans-serif;
+  line-height: normal;
+  z-index: 2147483647;
+}
+
+#frontmirror-app #frontmirror-app__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+#frontmirror-app #frontmirror-app__camera {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 700px;
+  min-height: 600px;
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  border: 0;
+  transition: opacity 0.2s;
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  overflow: hidden;
+}

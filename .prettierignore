@@ -1,0 +1,8 @@
+dist
+node_modules
+build
+public
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
+.env*
