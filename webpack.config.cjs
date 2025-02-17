@@ -8,7 +8,6 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 const ZipPlugin = require("zip-webpack-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const isDevelopment = NODE_ENV === "development";

@@ -63,9 +63,6 @@ importers:
       eslint-plugin-react:
         specifier: ^7.37.4
         version: 7.37.4(eslint@9.20.1)
-      eslint-webpack-plugin:
-        specifier: ^4.2.0
-        version: 4.2.0(eslint@9.20.1)(webpack@5.98.0)
       globals:
         specifier: ^15.15.0
         version: 15.15.0
@@ -861,9 +858,6 @@ packages:
   '@types/eslint-scope@3.7.7':
     resolution: {integrity: sha512-MzMFlSLBqNF2gcHWO0G1vP/YQyfvrxZ0bF+u7mzUdZ1/xK4A4sru+nraZz5i3iEIk1l1uyicaDVTB4QbbEkAYg==}
 
-  '@types/eslint@8.56.12':
-    resolution: {integrity: sha512-03ruubjWyOHlmljCVoxSuNDdmfZDzsrrz0P2LeJsOXr+ZwFQ+0yQIwNCwt/GYhV7Z31fgtXJTAEs+FYlEL851g==}
-
   '@types/eslint@9.6.1':
     resolution: {integrity: sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag==}
 
@@ -1479,13 +1473,6 @@ packages:
   eslint-visitor-keys@4.2.0:
     resolution: {integrity: sha512-UyLnSehNt62FFhSwjZlHmeokpRK59rcz29j+F1/aDgbkbRTk7wIc9XzdoasMUbRNKDM0qQt/+BJ4BrpFeABemw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-
-  eslint-webpack-plugin@4.2.0:
-    resolution: {integrity: sha512-rsfpFQ01AWQbqtjgPRr2usVRxhWDuG0YDYcG8DJOteD3EFnpeuYuOwk0PQiN7PRBTqS6ElNdtPZPggj8If9WnA==}
-    engines: {node: '>= 14.15.0'}
-    peerDependencies:
-      eslint: ^8.0.0 || ^9.0.0
-      webpack: ^5.0.0
 
   eslint@9.20.1:
     resolution: {integrity: sha512-m1mM33o6dBUjxl2qb6wv6nGNwCAsns1eKtaQ4l/NPHeTvhiUPbtdfMyktxN4B3fgHIgsYh1VT3V9txblpQHq+g==}
@@ -3785,11 +3772,6 @@ snapshots:
       '@types/eslint': 9.6.1
       '@types/estree': 1.0.6
 
-  '@types/eslint@8.56.12':
-    dependencies:
-      '@types/estree': 1.0.6
-      '@types/json-schema': 7.0.15
-
   '@types/eslint@9.6.1':
     dependencies:
       '@types/estree': 1.0.6
@@ -4564,16 +4546,6 @@ snapshots:
   eslint-visitor-keys@3.4.3: {}
 
   eslint-visitor-keys@4.2.0: {}
-
-  eslint-webpack-plugin@4.2.0(eslint@9.20.1)(webpack@5.98.0):
-    dependencies:
-      '@types/eslint': 8.56.12
-      eslint: 9.20.1
-      jest-worker: 29.7.0
-      micromatch: 4.0.8
-      normalize-path: 3.0.0
-      schema-utils: 4.3.0
-      webpack: 5.98.0(webpack-cli@6.0.1)
 
   eslint@9.20.1:
     dependencies:
