@@ -1,6 +1,6 @@
 {
   "name": "frontmirror",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A one-click camera check, right from the chrome toolbar.",
   "type": "module",
   "scripts": {

@@ -8,11 +8,10 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 const ZipPlugin = require("zip-webpack-plugin");
+const packageJson = require("./package.json");
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const isDevelopment = NODE_ENV === "development";
-
-const packageJson = JSON.parse(fs.readFileSync("package.json", "utf-8"));
 
 const { dir, ...options } = isDevelopment
   ? {
