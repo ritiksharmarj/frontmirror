@@ -6,18 +6,7 @@ import globals from "globals";
 
 export default [
   {
-    ignores: [
-      "dist",
-      // "node_modules",
-      // "build",
-      // "public",
-      // "yarn.lock",
-      // "pnpm-lock.yaml",
-      // "package-lock.json",
-      // ".env*",
-      // "*.config.cjs",
-      // "*.config.js",
-    ],
+    ignores: ["dist"],
   },
   {
     files: ["**/*.{js,jsx}"],
@@ -45,11 +34,6 @@ export default [
       ...reactHooks.configs.recommended.rules,
       "react/prop-types": "off",
       "react/jsx-no-target-blank": "off",
-      // "react/jsx-uses-react": "error",
-      // "react/jsx-uses-vars": "error",
-      // "react/react-in-jsx-scope": "off", // Not needed for React 17+
-      // "no-undef": "error", // Catch missing imports
-      // "no-unused-vars": "warn",
     },
     settings: {
       react: {
@@ -57,5 +41,5 @@ export default [
       },
     },
   },
-  eslintConfigPrettier, // add after other configs that you want to override
+  eslintConfigPrettier,
 ];
