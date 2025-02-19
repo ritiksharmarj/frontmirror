@@ -1,37 +1,21 @@
 import * as React from "react";
 import {
-  VideoIcon,
   ChevronsUpDownIcon,
-  SettingsIcon,
   RotateCwIcon,
+  SettingsIcon,
+  VideoIcon,
 } from "lucide-react";
+import unblockCamera from "@/assets/camera/unblock-the-camera.png";
+import useCameraDefault from "@/assets/camera/allow-sites-to-use-camera-default.png";
+import useCamera from "@/assets/camera/allow-sites-to-use-camera.png";
 
 export default function Camera() {
-  const videoRef = React.useRef(null);
-  const [devices, setDevices] = React.useState([]);
-  const [selectedDevice, setSelectedDevice] = React.useState("");
-  const [error, setError] = React.useState("");
-
-  const getDevices = React.useCallback(async () => {
-    try {
-      const devices = await navigator.mediaDevices.enumerateDevices();
-      const videoDevices = devices.filter((d) => d.kind === "videoinput");
-      setDevices(videoDevices);
-
-      if (videoDevices.length > 0 && !selectedDevice) {
-        setSelectedDevice(videoDevices[0].deviceId);
-      }
-    } catch (err) {
-      console.error("Device enumeration error:", err);
-    }
-  }, [selectedDevice]);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [devices, setDevices] = React.useState<MediaDeviceInfo[]>([]);
+  const [selectedDevice, setSelectedDevice] = React.useState<string>("");
+  const [error, setError] = React.useState<string>("");
 
   React.useEffect(() => {
-    getDevices();
-  }, [getDevices]);
-
-  React.useEffect(() => {
-    const videoEl = videoRef.current;
     const initCamera = async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({
@@ -44,24 +28,25 @@ export default function Camera() {
         });
 
         if (videoRef.current) {
-          videoEl.srcObject = stream;
-          await getDevices();
+          videoRef.current.srcObject = stream;
+
+          const devices = await navigator.mediaDevices.enumerateDevices();
+          setDevices(devices.filter((d) => d.kind === "videoinput"));
         }
-      } catch (err) {
-        setError("Camera access denied");
-        console.error("Camera error:", err);
+      } catch (error) {
+        setError(`Camera access denied: ${error}`);
       }
     };
 
     initCamera();
 
     return () => {
-      // Cleanup video stream when unmounting
-      if (videoEl?.srcObject) {
-        videoEl.srcObject.getTracks().forEach((track) => track.stop());
+      if (videoRef.current?.srcObject) {
+        const stream = videoRef.current.srcObject as MediaStream;
+        stream.getTracks().forEach((track) => track.stop());
       }
     };
-  }, [selectedDevice, getDevices]);
+  }, [selectedDevice]);
 
   return (
     <>
@@ -136,16 +121,12 @@ export default function Camera() {
               How to allow sites to use camera
             </span>
             <img
-              src={chrome.runtime.getURL(
-                "/assets/camera/allow-sites-to-use-camera-default.jpg",
-              )}
+              src={useCameraDefault}
               alt="Allow sites to use camera default behaviour"
               id="fm-app__error-section-info-img"
             />
             <img
-              src={chrome.runtime.getURL(
-                "/assets/camera/allow-sites-to-use-camera.jpg",
-              )}
+              src={useCamera}
               alt="Allow sites to use camera customised behaviours"
               id="fm-app__error-section-info-img"
             />
@@ -156,9 +137,7 @@ export default function Camera() {
               How to unblock the camera
             </span>
             <img
-              src={chrome.runtime.getURL(
-                "/assets/camera/unblock-the-camera.jpg",
-              )}
+              src={unblockCamera}
               alt="Unblock the camera"
               id="fm-app__error-section-info-img"
             />

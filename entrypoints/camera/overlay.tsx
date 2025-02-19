@@ -2,7 +2,7 @@ import * as React from "react";
 
 export default function CameraOverlay() {
   React.useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") unmountCamera();
     };
 
@@ -10,7 +10,7 @@ export default function CameraOverlay() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const handleOverlayClick = (e) => {
+  const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) unmountCamera();
   };
 

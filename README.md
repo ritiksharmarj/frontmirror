@@ -15,3 +15,10 @@ It's a chrome extension that provides one-click access to your camera, right fro
 Ever been in a hurry to join a video call and quickly needed to check your camera? Front mirror simplifies that process with just one click. No more navigating menus or wasting time - just instant access to your camera when you need it most.
 
 The fastest and easiest way to check camera.
+
+## Tech Stack
+
+- [TypeScript](https://www.typescriptlang.org) – language
+- [WXT.dev](https://wxt.dev) – framework
+
+Why WXT? It's like Next.js, but for web extensions.
