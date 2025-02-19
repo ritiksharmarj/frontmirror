@@ -4,7 +4,7 @@ A one-click camera check, right from the chrome toolbar.
 
 🏄‍♂️ [Chrome extension](https://ritiksharma.me/frontmirror)
 
-[![Frontmirror Cover Image](https://github.com/user-attachments/assets/ec0d9524-504b-4365-9451-dd3c2d487314)](https://youtu.be/yiQMPoZtqvM?feature=shared)
+[![Frontmirror Cover Image](https://github.com/user-attachments/assets/93fc3105-345a-4e94-b0de-55156c6983bb)](https://youtu.be/yiQMPoZtqvM?feature=shared)
 
 ## What is this?
 
