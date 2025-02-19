@@ -16,9 +16,13 @@ Ever been in a hurry to join a video call and quickly needed to check your camer
 
 The fastest and easiest way to check camera.
 
-## Tech Stack
+## Tech stack
 
 - [TypeScript](https://www.typescriptlang.org) – language
 - [WXT.dev](https://wxt.dev) – framework
 
 Why WXT? It's like Next.js, but for web extensions.
+
+## Webpack config
+
+If anyone interested in the webpack config then check out this branch [webpack react config](https://github.com/ritiksharmarj/frontmirror/tree/migrate-react)
